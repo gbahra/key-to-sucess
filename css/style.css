@@ -1,0 +1,108 @@
+body{
+    box-sizing: border-box;
+    font-family: "Helvetica Neue"
+}
+
+ul{
+    list-style: none;
+
+}
+li{
+    text-align: center;
+
+}
+
+h1{
+    text-align: center;
+    color:#0d2751;
+}
+#playerArea{
+    width:100vw;
+    display:inline-block;
+    margin-left: auto;
+    margin-right: auto;
+}
+#keyArea{
+    text-align: center;
+    padding: 50px;
+    border:0;
+}
+#currentKey{
+    border-radius: 100%;
+    background-color:red;
+    color:white;
+    font-size: 40px;
+    padding:5px;
+    width: 50px;
+    height:50px;
+
+}
+
+div{
+    display:inline-block;
+
+}
+
+#player1, #startButton, #player2{
+    width: 31vw;
+}
+
+
+#startButton{
+    text-align: center;
+    border:0;
+}
+
+#start{
+    font-size: 48px;
+    background-color:#022f77;
+    color:#fff;
+}
+
+#player1 li, #player2 li{
+    display: inline-block;
+    width:50px;
+    height:50px;
+    border:1px solid black;
+    margin-bottom:5px;
+    border-radius:100%;
+    line-height: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.gameArea{
+    display: inline-block;
+    border:1px solid black;
+    text-align: center;
+}
+
+.gameArea h3{
+    border-bottom: 1px solid black;
+    background-color:#3b4e6d;
+    margin-top: 0;
+    padding: 10px 0;
+    color:#fff;
+}
+
+#list {
+  height: 304px;
+  width: 304px;
+  display: inline-block;
+  float: left;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: 2px solid black;
+}
+
+#list > li {
+  display: inline-block;
+  float: left;
+  width: 100px;
+  height: 100px;
+  list-style-type: none;
+  margin: 0;
+  box-sizing: border-box;
+  border: 1px solid black;
+}
