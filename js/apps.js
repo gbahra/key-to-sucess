@@ -20,13 +20,20 @@ function playButtons(){
     myButtons[0].addEventListener("click",function(){
         var currentKey = callNextKey();
         keyArea.innerHTML = currentKey;
-        $(document).keydown(function(event) {
-        if(event.keypress() == currentKey.charCodeAt(0)){
-          alert( "Handler for .keyup() called." );
 
-        }
+         // $(document).keydown(function(event) {
+         // if(event.keypress() == currentKey.charCodeAt(0)){
+         //   alert( "Handler for .keyup() called." );
+
+         // }
+         $(document).keypress(function(event){
+            if(String.fromCharCode(event.which) == currentKey){
+              alert("yeah");
+            }
+
         });
         });
+        //});
   }
 //         for(var i = 0; i<3; i++){
 //             if(player1[i] === cBall){
