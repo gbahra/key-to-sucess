@@ -5,11 +5,9 @@ body{
 
 ul{
     list-style: none;
-
 }
 li{
     text-align: center;
-
 }
 
 h1{
@@ -28,19 +26,14 @@ h1{
     border:0;
 }
 #currentKey{
-    border-radius: 100%;
-    background-color:red;
-    color:white;
+    color:black;
     font-size: 40px;
     padding:5px;
-    width: 50px;
-    height:50px;
 
 }
 
 div{
     display:inline-block;
-
 }
 
 #player1, #startButton, #player2{

@@ -8,32 +8,26 @@ $(function(){
 
 
 function callNextKey(){
-
         var rand = Math.floor(Math.random()*p1keys.length);
-
         return p1keys[rand] ;
 }
 
 function playButtons(){
-    var myButtons = $("button");
+    var button = $("button");
     var keyArea = $("currentKey");
-    myButtons[0].addEventListener("click",function(){
-        var currentKey = callNextKey();
-        keyArea.innerHTML = currentKey;
-
-         // $(document).keydown(function(event) {
-         // if(event.keypress() == currentKey.charCodeAt(0)){
-         //   alert( "Handler for .keyup() called." );
-
-         // }
-         $(document).keypress(function(event){
-            if(String.fromCharCode(event.which) == currentKey){
+    button[0].addEventListener("click",function(){
+        var cKey = callNextKey();
+        currentKey.innerHTML = cKey;
+        $(document).keypress(function(event){
+        if(String.fromCharCode(event.which) == cKey){
               alert("yeah");
+            }
+            else{
+
             }
 
         });
         });
-        //});
   }
 //         for(var i = 0; i<3; i++){
 //             if(player1[i] === cBall){
