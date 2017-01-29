@@ -1,50 +1,48 @@
 $(function(){
-  var p1keys = ['q' , 'w', 'e', 'a', 's', 'd','z','x','c'];
+  var p1keys = ['q','w','e','a','s','d','z','x','c'];
+  var randomKeys = []
   var p2keys = ['t', 'y', 'u','g', 'h','j','b','n','m']
   var p1WinCounter = 0;
   var p2WinCounter = 0;
   var player1Area = $("player1");
   var player2Area = $("player2");
-  var buttonClicked = false;
 
-function callNextKey(){
-        var rand = Math.floor(Math.random()*p1keys.length);
-        return p1keys[rand] ;
-}
 
-function startButton(){
-  console.log('ads')
-    var button = $("button");
-    button[0].addEventListener("click",function(){
-      buttonClicked = true;
-  })
-    if(buttonClicked){
-      return true;
-    }else{
-      return false;
-    }
+  function callNextKey(){
+          for(var i = 0; i<10; i++){
+            randomKeys[i] = p1keys[Math.floor(Math.random()*p1keys.length)];
+          }
   }
 
+  function startButton(){
+      var button = $("button");
+      button[0].addEventListener("click",function(){
+    })
+      // if(buttonClicked){
+      //   return true;
+      // }else{
+      //   return false;
+      // }
+    }
+
   function keyPress(){
-    console.log('jsfjsd');
     var keyArea = $("currentKey");
-    var cKey = callNextKey();
+    var rand = Math.floor(Math.random()*p1keys.length);
+    var cKey = randomKeys[rand]
     currentKey.innerHTML = cKey;
-    console.log("hjdsjhf")
     $(document).keypress(function(event){
-        if(String.fromCharCode(event.which) != cKey){
-              alert('no');
-            }
-            else{
-              alert('yes')
-            }
-        })
+      if((String.fromCharCode(event.which) === cKey) && (randomKeys.length != 0)){
+        var indexToSplice = randomKeys.indexOf(rand);
+        randomKeys.splice(indexToSplice,1)
+        console.log(randomKeys)
+        keyPress();
+      }
+    })
   }
 
   function runGame(){
-      if(startButton() == true){
-      keyPress();
-    }
+    callNextKey();
+    keyPress();
     }
   runGame();
 
