@@ -18,6 +18,8 @@ $(function(){
       })
   }
   function keyPress(){
+    var audioElement = document.createElement('audio');
+    audioElement.setAttribute('src', 'DJ Khaled Another One Sound Effect (HD).mp3');
     var keyArea = $("currentKey");
     var cKey = randomKeys[randomKeys.length-1];
     if(randomKeys.length === 0){
@@ -27,6 +29,7 @@ $(function(){
     }
     $(document).keypress(function(event){
       if((String.fromCharCode(event.which) === cKey)){
+        audioElement.play();
         var indexToSplice = randomKeys.indexOf(randomKeys.length-1);
         randomKeys.splice(indexToSplice,1)
         console.log(randomKeys)
