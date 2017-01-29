@@ -14,12 +14,8 @@ $(function(){
   function startButton(){
       var button = $("button");
       button[0].addEventListener("click",function(){
+        keyPress();
       })
-      // if(buttonClicked){
-      //   return true;
-      // }else{
-      //   return false;
-      // }
   }
   function keyPress(){
     var keyArea = $("currentKey");
@@ -41,7 +37,7 @@ $(function(){
 
   function runGame(){
     callNextKey();
-    keyPress();
+    startButton();
     }
   runGame();
 
