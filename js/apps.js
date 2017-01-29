@@ -27,12 +27,11 @@ $(function(){
 
   function keyPress(){
     var keyArea = $("currentKey");
-    var rand = Math.floor(Math.random()*p1keys.length);
-    var cKey = randomKeys[rand]
+    var cKey = randomKeys[randomKeys.length-1];
     currentKey.innerHTML = cKey;
     $(document).keypress(function(event){
       if((String.fromCharCode(event.which) === cKey) && (randomKeys.length != 0)){
-        var indexToSplice = randomKeys.indexOf(rand);
+        var indexToSplice = randomKeys.indexOf(randomKeys.length-1);
         randomKeys.splice(indexToSplice,1)
         console.log(randomKeys)
         keyPress();
