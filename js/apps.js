@@ -1,16 +1,24 @@
 $(function(){
-  var p1keys = ['q','w','e','a','s','d','z','x','c'];
-  var p1randomKeys = [];
-  var p2keys = ['t', 'y', 'u','g', 'h','j','b','n','m']
-  var p2randomKeys = [];
+  var sentence = 'sit on the chair'
+  var p1keys = [];
+  var p2keys = [];
   var player1Area = $("player1");
   var player2Area = $("player2");
   var winner = false;
   function callNextKey(){
-    for(var i = 0; i<10; i++){
-      p1randomKeys[i] = p1keys[Math.floor(Math.random()*p1keys.length)];
-      p2randomKeys[i] = p2keys[Math.floor(Math.random()*p2keys.length)];
+    for(var i = 0; i<sentence.length; i++){
+      if (sentence[i] === ' '){
+        continue;
+      }
+      else if(i === 0 || i%2 === 0){
+        p1keys.push(sentence[i])
+      } else{
+        p2keys.push(sentence[i])
+
+      }
     }
+    console.log(p1keys)
+    console.log(p2keys)
   }
   function startButton(){
       var button = $("button");
@@ -60,7 +68,7 @@ $(function(){
   }
   function runGame(){
     callNextKey();
-    startButton();
+    //startButton();
     }
   runGame();
 });
