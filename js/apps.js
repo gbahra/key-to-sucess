@@ -5,6 +5,7 @@ $(function(){
   var p2randomKeys = [];
   var player1Area = $("player1");
   var player2Area = $("player2");
+  var winner = false;
   function callNextKey(){
     for(var i = 0; i<10; i++){
       p1randomKeys[i] = p1keys[Math.floor(Math.random()*p1keys.length)];
@@ -29,15 +30,18 @@ $(function(){
     if(p1randomKeys.length === 0 && p2randomKeys.length != 0){
       p1currentKey.innerHTML = "you win";
       p2currentKey.innerHTML = "you lose";
-      audioElementWinner.play();
+      winner = true
     }else if(p2randomKeys.length === 0 && p1randomKeys.length != 0) {
       p1currentKey.innerHTML = "you lose";
       p2currentKey.innerHTML = "you win";
-      audioElementWinner.play();
+      winner = true
     }else{
       p1currentKey.innerHTML = p1cKey;
       p2currentKey.innerHTML = p2cKey;
       }
+    if(winner === true){
+      audioElementWinner.play();
+    }
 
     $(document).keypress(function(event){
       if((String.fromCharCode(event.which) === p1cKey)){
