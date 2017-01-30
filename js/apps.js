@@ -25,31 +25,34 @@ $(function(){
     for(var i = 0; i<sentence.length; i++){
       if(p2Keyboard.indexOf(sentence[i]) != -1){
         return 'p2'
-      }
-      if(p1Keyboard.indexOf(sentence[i]) != -1){
+      }else if(p1Keyboard.indexOf(sentence[i]) != -1){
         return 'p1'
       }
     }
   }
   function startButton(){
-      var button = $("button");
-      button[0].addEventListener("click",function(){
-        keyPress();
-      })
+    var button = $("button");
+    button[0].addEventListener("click",function(){
+      keyPress();
+    })
   }
   function keyPress(){
     var audioElement = document.createElement('audio');
     audioElement.setAttribute('src', 'DJ Khaled Another One Sound Effect (HD).mp3');
+    var audioElementWinner = document.createElement('audioWinner');
+    audioElementWinner.setAttribute('src', 'DJ Khaled - All I Do Is Win ft. T-Pain, Ludacris, Rick Ross, Snoop Dogg.mp3')
     var p1keyArea = $("#p1currentKey");
     var p2keyArea = $("#p2currentKey");
     var p1cKey = p1keys[0];
     var p2cKey = p2keys[0];
     var turn = nextGo();
-    if (p1keys.length == 0 && p2keys.length == 0){
+    console.log(turn)
+    if(p1keys.length == 0 && p2keys.length == 0){
       p1keyArea.html('you win');
       p2keyArea.html('you win');
+      audioElementWinner.play();
     }
-    if(turn== 'p1'){
+    if(turn=== 'p1'){
       p1keyArea.html(p1cKey);
       p2keyArea.html(' ');
       $(document).keypress(function(event){
@@ -60,7 +63,7 @@ $(function(){
         }
       })
     }
-    else if(turn == 'p2'){
+    else if(turn === 'p2'){
       p2keyArea.html(p2cKey);
       p1keyArea.html(' ');
       $(document).keypress(function(event){
