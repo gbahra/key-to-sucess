@@ -1,6 +1,8 @@
 body{
     box-sizing: border-box;
     font-family: "Helvetica Neue"
+    background-image: url("http://www.rapbasement.com/wp-content/uploads/2013/07/398804_458615560819804_1567049175_n.jpg");
+
 }
 ul{
     list-style: none;
