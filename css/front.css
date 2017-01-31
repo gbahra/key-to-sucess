@@ -1,7 +1,7 @@
 img{
   width:100vw;
-  height:100vh;
-  -webkit-filter: grayscale(1);
+  height:100vh
+
 }
 
 @keyframes img {
