@@ -4,3 +4,7 @@ img{
   -webkit-filter: grayscale(1);
 }
 
+@keyframes img {
+   0% {opacity: 1;}
+   100% {opacity: 0;}
+}

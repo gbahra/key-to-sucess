@@ -1,25 +1,27 @@
 $(function(){
-  var sentence = 'stand up instead'
+  var audioElement = $('<audio></audio>');
+  audioElement.attr('src', 'DJ Khaled Another One Sound Effect (HD).mp3');
+  var player1Area = $("player1");
+  var player2Area = $("player2");
+  var p1keyArea = $("#p1currentKey");
+  var p2keyArea = $("#p2currentKey");
   var p1Keyboard = ['q', 'w', 'e', 'r', 't','a','s','d', 'f',
   'z', 'x', 'c', 'v']
   var p2Keyboard = ['y','u','i','o', 'p','g', 'h', 'j', 'k',
   'l', 'b', 'n', 'm']
-  console.log(p1Keyboard.length, p2Keyboard.length)
+  var sentence = 'stand up instead'
   var p1keys = [];
   var p2keys = [];
-  var player1Area = $("player1");
-  var player2Area = $("player2");
-  var winner = false;
   var position = 0;
-  function callNextKey(){
+
+
+  function sortKeys(){
     sentence = sentence.replace(/\s/g, '');
     for(var i = 0; i<sentence.length; i++){
-      for(var j = 0; j<p1Keyboard.length; j++){
-        if(sentence[i] == p1Keyboard[j]){
-          p1keys.push(sentence[i])
-        } else if (sentence[i] == p2Keyboard[j]){
+      if (p1Keyboard.indexOf(sentence[i]) !== -1) {
+        p1keys.push(sentence[i])
+      } else {
         p2keys.push(sentence[i])
-        }
       }
     }
   }
@@ -30,59 +32,46 @@ $(function(){
         return 'p1'
       }
   }
-  function startButton(){
-    var button = $("button");
-    button[0].addEventListener("click",function(){
-      keyPress();
-    })
-  }
-  function keyPress(){
-    var audioElement = document.createElement('audio');
-    audioElement.setAttribute('src', 'DJ Khaled Another One Sound Effect (HD).mp3');
-    var audioElementWinner = document.createElement('audioWinner');
-    audioElementWinner.setAttribute('src', 'DJ Khaled - All I Do Is Win ft. T-Pain, Ludacris, Rick Ross, Snoop Dogg.mp3');
-    var p1keyArea = $("#p1currentKey");
-    var p2keyArea = $("#p2currentKey");
-    var nextLetter = sentence[position];
-    console.log(nextLetter);
-    var turn = nextGo(nextLetter);
-    console.log(turn);
 
+  function startButton(){
+    $("button").click(keyPress);
+    $(document).keypress(keyPress);
+  }
+
+  function keyPress(){
     if(p1keys.length == 0 && p2keys.length == 0){
       p1keyArea.html('you win');
       p2keyArea.html('you win');
-      audioElementWinner.play();
     }
+    var nextLetter = sentence[position]
+    var turn = nextGo(sentence[position]);
     if(turn==='p1'){
       p1keyArea.html(nextLetter);
       p2keyArea.html(' ');
-      $(document).keypress(function(event){
-        if((String.fromCharCode(event.keyCode) === nextLetter)){
-          console.log(event.which)
-          audioElement.play();
-          p1keys.splice(0,1)
-          position++;
-          console.log(position);
-          keyPress();
-        }
-      })
-    }
-    if(turn==='p2'){
+      if((String.fromCharCode(event.keyCode) === nextLetter)) playerClick(p1keys);
+    } else {
       p2keyArea.html(nextLetter);
       p1keyArea.html(' ');
-      $(document).keypress(function(event){
-        if((String.fromCharCode(event.keyCode)  === nextLetter)){
-          console.log(event.which)
-          audioElement.play();
-          p2keys.splice(0,1);
-          position++;
-          console.log(position);
-          keyPress();
-        }
-      })
+      if((String.fromCharCode(event.keyCode)  === nextLetter)) playerClick(p2keys);
     }
   }
-  // function keyPress(){
+
+  function playerClick(keys) {
+    console.log(event.which)
+    audioElement[0].play();
+    keys.splice(0,1);
+    position++;
+    keyPress();
+  }
+
+  function runGame(){
+    sortKeys();
+    startButton();
+  }
+  runGame();
+});
+
+// function keyPress(){
   //   var audioElement = document.createElement('audio');
   //   audioElement.setAttribute('src', 'DJ Khaled Another One Sound Effect (HD).mp3');
   //   var audioElementWinner = document.createElement('audioWinner');
@@ -121,9 +110,3 @@ $(function(){
   //     }
   //   })
   // }
-  function runGame(){
-    callNextKey();
-    startButton();
-  }
-  runGame();
-});
