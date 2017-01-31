@@ -3,7 +3,8 @@ $(document).ready(function(){
   $("img").fadeOut(time);
 
   setTimeout(function() {
-           window.location = "index.html"
+
+           window.location = "index.html";
         }, time);
   });
 

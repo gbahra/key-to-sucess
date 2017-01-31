@@ -1,4 +1,11 @@
 $(function(){
+  var time = 10000
+  $("body").hide();
+  setTimeout(function() {
+            $("body").fadeIn(time*2);
+        }, time);
+
+  $("body").fadeIn(10000);
   var audioElement = $('<audio></audio>');
   audioElement.attr('src', 'DJ Khaled Another One Sound Effect (HD).mp3');
   var player1Area = $("player1");
