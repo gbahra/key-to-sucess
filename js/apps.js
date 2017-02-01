@@ -7,7 +7,7 @@ $(function(){
   'z', 'x', 'c', 'v'];
   var p2Keyboard = ['y','u','i','o', 'p','g', 'h', 'j', 'k',
   'l', 'b', 'n', 'm'];
-  var khaledQuotes = ['The key to more success is coco butter', 'The key is to make it', 'Give thanks to the most high', 'They will try to close the door on u, just open it', 'They don’t want you to jet ski', 'Congratulations, you played yourself', 'You smart! You loyal! You’re a genius!', 'The other day the grass was brown, now its green cuz I ain’t give up']
+  var khaledQuotes = ['The key to more success is coco butter', 'The key is to make it', 'Give thanks to the most high', 'They will try to close the door on u, just open it', 'They don’t want you to jet ski', 'You smart! You loyal! You’re a genius!', 'The other day the grass was brown, now its green cuz I ain’t give up']
   var p1keys = [];
   var p2keys = [];
   var position = 0;
