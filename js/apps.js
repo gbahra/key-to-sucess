@@ -8,11 +8,11 @@ $(function(){
   var p2Keyboard = ['y','u','i','o', 'p','g', 'h', 'j', 'k',
   'l', 'b', 'n', 'm'];
   var khaledQuotes = ['The key to more success is coco butter', 'The key is to make it', 'Give thanks to the most high', 'They will try to close the door on u, just open it', 'They don’t want you to jet ski', 'You gotta water your plants, Nobody can water them for you', 'You smart! You loyal! You’re a genius!', 'The other day the grass was brown, now its green cuz I ain’t give up']
-  var p1keys = [];
-  var p2keys = [];
+  var p1keys;
+  var p2keys;
   var position = 0;
   var sentence;
-  var messageSentence = ''
+  var messageSentence = '';
   var nextLetter;
   var timer;
   var turn;
@@ -88,6 +88,7 @@ $(function(){
   }
 
   function keyPress(key){
+    console.log(sentence)
     console.log(p1keys, p2keys);
     console.log(key, nextLetter);
     if((key === nextLetter) && turn ==='p1'){
@@ -107,7 +108,7 @@ $(function(){
     audioElement.attr('src', 'DJ Khaled Another One Sound Effect (HD).mp3');
     audioElement[0].play();
     keys.splice(0,1);
-    nextLetter = sentence[position++];
+    position++;
     startRound();
   }
 
@@ -120,7 +121,7 @@ $(function(){
     audioElement.attr('src', 'Congratulations, you played yourself..mp3');
     audioElement[0].play();
     clearTimeout(timer)
-    position =  0;
+    position =  -1;
     winner = 0;
     resetGame();
   }
@@ -133,7 +134,7 @@ $(function(){
     audioElement.attr('src', 'DJ Khaled - All I Do is Win mmv (chorus only).mp3');
     audioElement[0].play();
     clearTimeout(timer)
-    position= 0;
+    position= -1;
     winner++;
     resetGame();
 
