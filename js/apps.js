@@ -15,13 +15,16 @@ $(function(){
   var p2keys = [];
   var position = 0;
   var timer;
+  var lost = false;
+
   function fade(){
-  var time = 3000
-  $("body").hide();
-  setTimeout(function() {
-    $("body").fadeIn(time);
-  }, time);
+    var time = 3000
+    $("body").hide();
+    setTimeout(function() {
+      $("body").fadeIn(time);
+    }, time);
   }
+
   function sortKeys(){
     oldSentence = sentence;
     sentence = sentence.replace(/[^\w\s]|_/g, "").toLowerCase();
@@ -35,6 +38,7 @@ $(function(){
       }
     }
   }
+
   function nextGo(currentKey){
     if(p2Keyboard.indexOf(currentKey) !== -1){
       return 'p2'
@@ -42,35 +46,49 @@ $(function(){
       return 'p1'
     }
   }
+
   function startButton(){
-    $("button").click(keyPress);
-    $(document).keypress(keyPress);
+    $(document).keypress(function(){
+      if(lost == true){
+        p1keyArea.html('');
+        p2keyArea.html('');
+        $(document).bind('keypress');
+      }
+      if((String.fromCharCode(event.keyCode) == 32)){
+        keyPress();
+      }
+    })
   }
+
   function loser(){
     p1keyArea.html('you lose');
     p2keyArea.html('you lose');
-    sentence = "";
     $(document).unbind('keypress');
     var audioElement = $('<audio></audio>');
     audioElement.attr('src', 'Congratulations, you played yourself..mp3');
     audioElement[0].play();
-    return
+    lost = true;
   }
+
+  function winner(){
+    p1keyArea.html('you win');
+    p2keyArea.html('you win');
+    var audioElement = $('<audio></audio>');
+    audioElement.attr('src', 'DJ Khaled - All I Do is Win mmv (chorus only).mp3');
+    audioElement[0].play();
+    clearTimeout(timer)
+
+  }
+
   function keyPress(){
     $('footer').html(oldSentence);
     if(p1keys.length === 0 && p2keys.length === 0){
-      p1keyArea.html('you win');
-      p2keyArea.html('you win');
-      var audioElement = $('<audio></audio>');
-      audioElement.attr('src', 'DJ Khaled - All I Do is Win mmv (chorus only).mp3');
-      audioElement[0].play();
-      clearTimeout(timer)
-      return;
+     winner();
     }
     clearTimeout(timer)
     timer = setTimeout(function(){
       loser();
-    }, 2000)
+    }, 7000)
     var nextLetter = sentence[position]
     var turn = nextGo(sentence[position]);
     $('#' + nextLetter).css('background-color', 'green')
@@ -94,6 +112,7 @@ $(function(){
       }
     }
   }
+
   function playerClick(keys) {
     var audioElement = $('<audio></audio>');
     audioElement.attr('src', 'DJ Khaled Another One Sound Effect (HD).mp3');
@@ -102,11 +121,13 @@ $(function(){
     position++;
     keyPress();
   }
+
   function runGame(){
     fade();
     sortKeys();
     startButton();
   }
+
   runGame();
 });
 
