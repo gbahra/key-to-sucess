@@ -17,7 +17,7 @@ $(function(){
   var timer;
   var turn;
   var winCounter = 0;
-  var t = 5000;
+  var t = 3000;
 
   function resetGame() {
     sortKeys();
