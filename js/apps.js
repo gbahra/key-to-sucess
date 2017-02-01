@@ -88,6 +88,7 @@ $(function(){
   }
 
   function keyPress(key){
+    console.log(p1keys, p2keys);
     console.log(key, nextLetter);
     if((key === nextLetter) && turn ==='p1'){
       $('#' + nextLetter).css('background-color', 'rgba(0, 0, 0, 0.2');
@@ -121,6 +122,7 @@ $(function(){
     clearTimeout(timer)
     position =  0;
     winner = 0;
+    resetGame();
   }
 
   function winner(){
@@ -133,6 +135,7 @@ $(function(){
     clearTimeout(timer)
     position= 0;
     winner++;
+    resetGame();
 
   }
 
