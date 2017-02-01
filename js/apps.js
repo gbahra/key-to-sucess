@@ -91,7 +91,9 @@ $(function(){
     } else if((key  === nextLetter) && turn ==='p2') {
       $('#' + nextLetter).css('background-color', 'rgba(0, 0, 0, 0.2');
       goodKey(p2keys);
-    } else if((key  !== nextLetter)){
+    } else if(key === " "){
+      keyPressListener();
+    }else if((key  !== nextLetter)){
       loser();
     }
   }
@@ -108,13 +110,13 @@ $(function(){
    function loser(){
     p1keyArea.html('you lose');
     p2keyArea.html('you lose');
-    $(document).unbind("keypress");
     $('#' + nextLetter).css('background-color', 'rgba(0, 0, 0, 0.2');
     var audioElement = $('<audio></audio>');
     audioElement.attr('src', 'Congratulations, you played yourself..mp3');
     audioElement[0].play();
+
     clearTimeout(timer)
-    runGame()
+    resetGame();
   }
 
   function winner(){
@@ -124,7 +126,7 @@ $(function(){
     audioElement.attr('src', 'DJ Khaled - All I Do is Win mmv (chorus only).mp3');
     audioElement[0].play();
     clearTimeout(timer)
-    runGame();
+    resetGame();
   }
 
   function fade(){
@@ -134,7 +136,6 @@ $(function(){
       $("body").fadeIn(time);
     }, time);
   }
-
   resetGame();
   //fade();
 });
