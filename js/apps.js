@@ -54,11 +54,14 @@ $(function(){
         p2keyArea.html('');
         $(document).bind('keypress');
       }
-      if((String.fromCharCode(event.keyCode) == 32)){
+
+      if((String.fromCharCode(event.keyCode) == " ")){
+        $(document).keypress(keyPress)
         keyPress();
       }
     })
   }
+
 
   function loser(){
     p1keyArea.html('you lose');
@@ -77,7 +80,6 @@ $(function(){
     audioElement.attr('src', 'DJ Khaled - All I Do is Win mmv (chorus only).mp3');
     audioElement[0].play();
     clearTimeout(timer)
-
   }
 
   function keyPress(){
