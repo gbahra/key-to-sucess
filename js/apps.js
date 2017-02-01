@@ -50,7 +50,6 @@ $(function(){
       if (key === " ") {
         (position === 0) ? startRound() : resetGame();
       } else {
-
         keyPress(key);
       }
     })
@@ -132,7 +131,6 @@ $(function(){
     audioElement.attr('src', 'DJ Khaled - All I Do is Win mmv (chorus only).mp3');
     audioElement[0].play();
     clearTimeout(timer)
-
     position= 0;
     winner++;
 
