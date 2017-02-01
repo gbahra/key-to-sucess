@@ -2,9 +2,8 @@ $(function(){
   var time = 10000
   $("body").hide();
   setTimeout(function() {
-            $("body").fadeIn(time*2);
-        }, time);
-
+    $("body").fadeIn(time);
+  }, time);
   $("body").fadeIn(10000);
   var player1Area = $("player1");
   var player2Area = $("player2");
@@ -40,10 +39,17 @@ $(function(){
       return 'p1'
     }
   }
-
   function startButton(){
     $("button").click(keyPress);
     $(document).keypress(keyPress);
+  }
+
+  function loser(){
+    p1keyArea.html('you lose');
+    p2keyArea.html('you lose');
+    sentence = "";
+    $(document).unbind('keypress');
+    return;
   }
 
   function keyPress(){
@@ -53,10 +59,11 @@ $(function(){
       clearTimeout(timer)
       return;
     }
+
     clearTimeout(timer)
     timer = setTimeout(function(){
-      alert('gameover');
-    }, 10000)
+      loser();
+    }, 1000)
     var nextLetter = sentence[position]
     var turn = nextGo(sentence[position]);
     $('#' + nextLetter).css('background-color', 'green')
@@ -66,6 +73,8 @@ $(function(){
       if((String.fromCharCode(event.keyCode) === nextLetter)){
         $('#' + nextLetter).css('background-color', 'rgba(0, 0, 0, 0.2');
         playerClick(p1keys);
+      } else{
+        loser();
       }
     } else {
       p2keyArea.html(nextLetter);
@@ -73,7 +82,9 @@ $(function(){
       if((String.fromCharCode(event.keyCode)  === nextLetter)) {
         $('#' + nextLetter).css('background-color', 'rgba(0, 0, 0, 0.2');
         playerClick(p2keys);
-      }
+      } else{
+      loser();
+    }
     }
   }
   function playerClick(keys) {
@@ -84,7 +95,6 @@ $(function(){
     position++;
     keyPress();
   }
-
   function runGame(){
     sortKeys();
     startButton();
