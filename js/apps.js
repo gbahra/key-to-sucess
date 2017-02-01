@@ -49,12 +49,7 @@ $(function(){
 
   function startButton(){
     $('footer').html("Press space bar to start");
-    $(document).keypress(function(){
-      if((String.fromCharCode(event.keyCode) == " ")){
-        $(document).keypress(keyPress)
-        keyPress();
-      }
-    })
+    $(document).keypress(keyPress)
   }
 
 
@@ -65,7 +60,6 @@ $(function(){
     var audioElement = $('<audio></audio>');
     audioElement.attr('src', 'Congratulations, you played yourself..mp3');
     audioElement[0].play();
-
     startButton();
   }
 
@@ -78,35 +72,42 @@ $(function(){
     clearTimeout(timer)
   }
 
+  function time(){
+
+      timer = setTimeout(function(){
+        loser();
+      }, 1000000)
+  }
+
   function keyPress(){
-    $('footer').html(oldSentence);
-    if(p1keys.length === 0 && p2keys.length === 0){
-     winner();
-    }
-    clearTimeout(timer)
-    timer = setTimeout(function(){
-      loser();
-    }, 1000000)
-    var nextLetter = sentence[position]
-    var turn = nextGo(sentence[position]);
-    $('#' + nextLetter).css('background-color', 'green')
-    if(turn==='p1'){
-      p1keyArea.html(nextLetter);
-      p2keyArea.html(' ');
-      if((String.fromCharCode(event.keyCode) === nextLetter)){
-        $('#' + nextLetter).css('background-color', 'rgba(0, 0, 0, 0.2');
-        playerClick(p1keys);
-      } else if((String.fromCharCode(event.keyCode)  !== nextLetter)){
-        loser();
+    if(String.fromCharCode(event.keyCode) === " "){
+      $('footer').html(oldSentence);
+      if(p1keys.length === 0 && p2keys.length === 0){
+       winner();
       }
-    } else {
-      p2keyArea.html(nextLetter);
-      p1keyArea.html(' ');
-      if((String.fromCharCode(event.keyCode)  === nextLetter)) {
-        $('#' + nextLetter).css('background-color', 'rgba(0, 0, 0, 0.2');
-        playerClick(p2keys);
-      } else if((String.fromCharCode(event.keyCode)  !== nextLetter)){
-        loser();
+      clearTimeout(timer)
+      timer();
+      var nextLetter = sentence[position]
+      var turn = nextGo(sentence[position]);
+      $('#' + nextLetter).css('background-color', 'green')
+      if(turn==='p1'){
+        p1keyArea.html(nextLetter);
+        p2keyArea.html(' ');
+        if((String.fromCharCode(event.keyCode) === nextLetter)){
+          $('#' + nextLetter).css('background-color', 'rgba(0, 0, 0, 0.2');
+          playerClick(p1keys);
+        } else if((String.fromCharCode(event.keyCode)  !== nextLetter)){
+          loser();
+        }
+      } else {
+        p2keyArea.html(nextLetter);
+        p1keyArea.html(' ');
+        if((String.fromCharCode(event.keyCode)  === nextLetter)) {
+          $('#' + nextLetter).css('background-color', 'rgba(0, 0, 0, 0.2');
+          playerClick(p2keys);
+        } else if((String.fromCharCode(event.keyCode)  !== nextLetter)){
+          loser();
+        }
       }
     }
   }
