@@ -1,4 +1,5 @@
 $(function(){
+  //button where loser and time bar
   var time = 10000
   $("body").hide();
   setTimeout(function() {
@@ -49,7 +50,10 @@ $(function(){
     p2keyArea.html('you lose');
     sentence = "";
     $(document).unbind('keypress');
-    return;
+    var audioElement = $('<audio></audio>');
+    audioElement.attr('src', 'Congratulations, you played yourself..mp3');
+    audioElement[0].play();
+    return
   }
 
   function keyPress(){
@@ -63,7 +67,7 @@ $(function(){
     clearTimeout(timer)
     timer = setTimeout(function(){
       loser();
-    }, 1000)
+    }, 10000)
     var nextLetter = sentence[position]
     var turn = nextGo(sentence[position]);
     $('#' + nextLetter).css('background-color', 'green')
@@ -73,7 +77,7 @@ $(function(){
       if((String.fromCharCode(event.keyCode) === nextLetter)){
         $('#' + nextLetter).css('background-color', 'rgba(0, 0, 0, 0.2');
         playerClick(p1keys);
-      } else{
+      } else if(document.onkeyup &&(String.fromCharCode(event.keyCode)  !== nextLetter)){
         loser();
       }
     } else {
@@ -82,9 +86,9 @@ $(function(){
       if((String.fromCharCode(event.keyCode)  === nextLetter)) {
         $('#' + nextLetter).css('background-color', 'rgba(0, 0, 0, 0.2');
         playerClick(p2keys);
-      } else{
-      loser();
-    }
+      } else if(document.onkeyup &&(String.fromCharCode(event.keyCode)  !== nextLetter)){
+        loser();
+      }
     }
   }
   function playerClick(keys) {
