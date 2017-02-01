@@ -16,7 +16,8 @@ $(function(){
   var nextLetter;
   var timer;
   var turn;
-
+  var winCounter = 0;
+  var t = 2000;
   function resetGame() {
     sortKeys();
     keyPressListener();
@@ -54,13 +55,13 @@ $(function(){
 
   function startRound(){
     clearTimeout(timer);
-    time();
+    time(t);
     if (p1keys.length === 0 && p2keys.length === 0) return winner();
+    if(winCounter === 3) t = t-100;
     $('footer').html(messageSentence);
     nextLetter = sentence[position];
     turn = nextGo(sentence[position]);
     $('#' + nextLetter).css('background-color', 'green')
-
     if(turn==='p1'){
       p1keyArea.html(nextLetter);
       p2keyArea.html(' ');
@@ -78,10 +79,10 @@ $(function(){
     }
   }
 
-  function time(){
+  function time(t){
       timer = setTimeout(function(){
         loser();
-      }, 10000000)
+      }, t)
   }
 
   function keyPress(key){
@@ -91,9 +92,8 @@ $(function(){
     } else if((key  === nextLetter) && turn ==='p2') {
       $('#' + nextLetter).css('background-color', 'rgba(0, 0, 0, 0.2');
       goodKey(p2keys);
-    } else if(key === " "){
-      keyPressListener();
-    }else if((key  !== nextLetter)){
+    }
+    else if((key  !== nextLetter)){
       loser();
     }
   }
@@ -114,7 +114,6 @@ $(function(){
     var audioElement = $('<audio></audio>');
     audioElement.attr('src', 'Congratulations, you played yourself..mp3');
     audioElement[0].play();
-
     clearTimeout(timer)
     resetGame();
   }
@@ -126,17 +125,18 @@ $(function(){
     audioElement.attr('src', 'DJ Khaled - All I Do is Win mmv (chorus only).mp3');
     audioElement[0].play();
     clearTimeout(timer)
+    winner++;
     resetGame();
   }
 
   function fade(){
-    var time = 3000;
     $("body").hide();
     setTimeout(function() {
-      $("body").fadeIn(time);
-    }, time);
+      $("body").fadeIn(1000);
+    }, 1000);
   }
+  fade();
   resetGame();
-  //fade();
+
 });
 
