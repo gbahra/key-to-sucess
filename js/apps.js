@@ -17,7 +17,7 @@ $(function(){
   var timer;
   var turn;
   var winCounter = 0;
-  var t = 2000;
+  var t = 5000;
 
   function resetGame() {
     sortKeys();
@@ -48,7 +48,7 @@ $(function(){
       if (key === " ") {
         (position === 0) ? startRound() : resetGame();
       } else {
-        console.log(key);
+
         keyPress(key);
       }
     })
@@ -87,6 +87,7 @@ $(function(){
   }
 
   function keyPress(key){
+    console.log(key, nextLetter);
     if((key === nextLetter) && turn ==='p1'){
       $('#' + nextLetter).css('background-color', 'rgba(0, 0, 0, 0.2');
       goodKey(p1keys);
@@ -115,9 +116,10 @@ $(function(){
     var audioElement = $('<audio></audio>');
     audioElement.attr('src', 'Congratulations, you played yourself..mp3');
     audioElement[0].play();
+    winner = 0;
     clearTimeout(timer)
     position = 0;
-    resetGame();
+
   }
 
   function winner(){
@@ -129,7 +131,7 @@ $(function(){
     clearTimeout(timer)
     position= 0;
     winner++;
-    resetGame();
+
   }
 
   function fade(){
