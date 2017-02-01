@@ -1,11 +1,6 @@
 $(function(){
   //button where loser and time bar
-  var time = 10000
-  $("body").hide();
-  setTimeout(function() {
-    $("body").fadeIn(time);
-  }, time);
-  $("body").fadeIn(10000);
+
   var player1Area = $("player1");
   var player2Area = $("player2");
   var p1keyArea = $("#p1currentKey");
@@ -16,12 +11,21 @@ $(function(){
   'l', 'b', 'n', 'm']
   var khaledQuotes = ['The key to more success is coco butter', 'The key is to make it', 'Give thanks to the most high', 'They will try to close the door on u, just open it', 'They don’t want you to jet ski', 'Congratulations, you played yourself', 'You smart! You loyal! You’re a genius!', 'The other day the grass was brown, now its green cuz I ain’t give up']
   var sentence = khaledQuotes[Math.floor(Math.random() * khaledQuotes.length)]
-  $('footer').html(sentence);
+  var oldSentence = '';
   var p1keys = [];
   var p2keys = [];
   var position = 0;
   var timer;
+  function fade(){
+    var time = 10000
+  $("body").hide();
+  setTimeout(function() {
+    $("body").fadeIn(time);
+  }, time);
+  $("body").fadeIn(10000);
+  }
   function sortKeys(){
+    oldSentence = sentence;
     sentence = sentence.replace(/[^\w\s]|_/g, "").toLowerCase();
     sentence = sentence.replace(/\s/g,'')
     console.log(sentence)
@@ -44,7 +48,6 @@ $(function(){
     $("button").click(keyPress);
     $(document).keypress(keyPress);
   }
-
   function loser(){
     p1keyArea.html('you lose');
     p2keyArea.html('you lose');
@@ -57,17 +60,20 @@ $(function(){
   }
 
   function keyPress(){
+    $('footer').html(oldSentence);
     if(p1keys.length === 0 && p2keys.length === 0){
       p1keyArea.html('you win');
       p2keyArea.html('you win');
+      var audioElement = $('<audio></audio>');
+      audioElement.attr('src', 'DJ Khaled - All I Do Is Win ft. T-Pain, Ludacris, Rick Ross, Snoop Dogg.mp3');
+      audioElement[0].play();
       clearTimeout(timer)
       return;
     }
-
     clearTimeout(timer)
     timer = setTimeout(function(){
       loser();
-    }, 10000)
+    }, 2000)
     var nextLetter = sentence[position]
     var turn = nextGo(sentence[position]);
     $('#' + nextLetter).css('background-color', 'green')
@@ -100,6 +106,7 @@ $(function(){
     keyPress();
   }
   function runGame(){
+    fade();
     sortKeys();
     startButton();
   }
