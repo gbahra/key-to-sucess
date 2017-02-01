@@ -27,6 +27,7 @@ $(function(){
   function sortKeys(){
     p1keys = [];
     p2keys = [];
+    position = 0;
     sentence = khaledQuotes[Math.floor(Math.random() * khaledQuotes.length)]
     messageSentence = sentence;
     sentence = removeSpaces(sentence);
@@ -121,7 +122,6 @@ $(function(){
     audioElement.attr('src', 'Congratulations, you played yourself..mp3');
     audioElement[0].play();
     clearTimeout(timer)
-    position =  -1;
     winner = 0;
     resetGame();
   }
@@ -134,7 +134,6 @@ $(function(){
     audioElement.attr('src', 'DJ Khaled - All I Do is Win mmv (chorus only).mp3');
     audioElement[0].play();
     clearTimeout(timer)
-    position= -1;
     winner++;
     resetGame();
 
