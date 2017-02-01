@@ -1,6 +1,5 @@
 $(function(){
   //button where loser and time bar
-
   var player1Area = $("player1");
   var player2Area = $("player2");
   var p1keyArea = $("#p1currentKey");
@@ -17,12 +16,11 @@ $(function(){
   var position = 0;
   var timer;
   function fade(){
-    var time = 10000
+  var time = 3000
   $("body").hide();
   setTimeout(function() {
     $("body").fadeIn(time);
   }, time);
-  $("body").fadeIn(10000);
   }
   function sortKeys(){
     oldSentence = sentence;
@@ -58,14 +56,13 @@ $(function(){
     audioElement[0].play();
     return
   }
-
   function keyPress(){
     $('footer').html(oldSentence);
     if(p1keys.length === 0 && p2keys.length === 0){
       p1keyArea.html('you win');
       p2keyArea.html('you win');
       var audioElement = $('<audio></audio>');
-      audioElement.attr('src', 'DJ Khaled - All I Do Is Win ft. T-Pain, Ludacris, Rick Ross, Snoop Dogg.mp3');
+      audioElement.attr('src', 'DJ Khaled - All I Do is Win mmv (chorus only).mp3');
       audioElement[0].play();
       clearTimeout(timer)
       return;
