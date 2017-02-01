@@ -56,7 +56,7 @@ $(function(){
     clearTimeout(timer)
     timer = setTimeout(function(){
       alert('gameover');
-    }, 1000)
+    }, 10000)
     var nextLetter = sentence[position]
     var turn = nextGo(sentence[position]);
     $('#' + nextLetter).css('background-color', 'green')
@@ -70,12 +70,9 @@ $(function(){
     } else {
       p2keyArea.html(nextLetter);
       p1keyArea.html(' ');
-      if((String.fromCharCode(event.keyCode)  !== nextLetter)){
+      if((String.fromCharCode(event.keyCode)  === nextLetter)) {
         $('#' + nextLetter).css('background-color', 'rgba(0, 0, 0, 0.2');
         playerClick(p2keys);
-      }
-      if((String.fromCharCode(event.keyCode)  === nextLetter)) {
-
       }
     }
   }
