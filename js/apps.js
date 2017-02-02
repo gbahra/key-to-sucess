@@ -116,6 +116,7 @@ $(function(){
   function loser(){
     p1keyArea.html('you lose');
     p2keyArea.html('you lose');
+    $(document).off("keypress");
     $('footer').html("Press space bar to start, and reset at any point");
     $('#' + nextLetter).css('background-color', 'rgba(0, 0, 0, 0.2');
     var audioElement = $('<audio></audio>');
@@ -129,6 +130,7 @@ $(function(){
   function winner(){
     p1keyArea.html('you win');
     p2keyArea.html('you win');
+    $(document).off("keypress");
     $('footer').html("Press space bar to start, and reset at any point");
     var audioElement = $('<audio></audio>');
     audioElement.attr('src', 'DJ Khaled - All I Do is Win mmv (chorus only).mp3');
@@ -136,7 +138,6 @@ $(function(){
     clearTimeout(timer)
     winner++;
     resetGame();
-
   }
 
   function fade(){
@@ -147,6 +148,5 @@ $(function(){
   }
   fade();
   resetGame();
-
-});
+  });
 
