@@ -17,8 +17,9 @@ $(function(){
   var timer;
   var turn;
   var winCounter;
-  var t = 3000;
-  var audioElementLose;
+  var t = 5000;
+  var audioElementLose = $('<audio></audio>');
+  audioElementLose.attr('src', 'Congratulations, you played yourself..mp3');;
   var audioElementWin = $('<audio></audio>');
   var audioElement;
 
@@ -61,6 +62,7 @@ $(function(){
 
   function startRound(){
     audioElementWin[0].pause();
+    audioElementLose[0].pause();
     clearTimeout(timer);
     time(t);
     if (p1keys.length === 0 && p2keys.length === 0) return winner();
@@ -93,6 +95,7 @@ $(function(){
   }
 
   function keyPress(key){
+
     console.log(sentence)
     console.log(p1keys, p2keys);
     console.log(key, nextLetter);
@@ -123,8 +126,7 @@ $(function(){
     $(document).off("keypress");
     $('footer').html("Press space bar to start, and reset at any point");
     $('#' + nextLetter).css('background-color', 'rgba(0, 0, 0, 0.2');
-    var audioElementLose = $('<audio></audio>');
-    audioElementLose.attr('src', 'Congratulations, you played yourself..mp3');
+
     audioElementLose[0].play();
     clearTimeout(timer)
     winCounter = 0;
