@@ -16,8 +16,12 @@ $(function(){
   var nextLetter;
   var timer;
   var turn;
-  var winCounter = 0;
+  var winCounter;
   var t = 3000;
+  var audioElementLose;
+  var audioElementWin = $('<audio></audio>');
+
+  var audioElement;
 
   function resetGame() {
     sortKeys();
@@ -57,6 +61,7 @@ $(function(){
   }
 
   function startRound(){
+    audioElementWin[0].pause();
     clearTimeout(timer);
     time(t);
     if (p1keys.length === 0 && p2keys.length === 0) return winner();
@@ -83,9 +88,9 @@ $(function(){
   }
 
   function time(t){
-      timer = setTimeout(function(){
-        loser();
-      }, t)
+    timer = setTimeout(function(){
+      loser();
+    }, t)
   }
 
   function keyPress(key){
@@ -119,11 +124,11 @@ $(function(){
     $(document).off("keypress");
     $('footer').html("Press space bar to start, and reset at any point");
     $('#' + nextLetter).css('background-color', 'rgba(0, 0, 0, 0.2');
-    var audioElement = $('<audio></audio>');
-    audioElement.attr('src', 'Congratulations, you played yourself..mp3');
-    audioElement[0].play();
+    var audioElementLose = $('<audio></audio>');
+    audioElementLose.attr('src', 'Congratulations, you played yourself..mp3');
+    audioElementLose[0].play();
     clearTimeout(timer)
-    winner = 0;
+    winCounter = 0;
     resetGame();
   }
 
@@ -132,11 +137,10 @@ $(function(){
     p2keyArea.html('you win');
     $(document).off("keypress");
     $('footer').html("Press space bar to start, and reset at any point");
-    var audioElement = $('<audio></audio>');
-    audioElement.attr('src', 'DJ Khaled - All I Do is Win mmv (chorus only).mp3');
-    audioElement[0].play();
+    audioElementWin.attr('src', 'DJ Khaled - All I Do is Win mmv (chorus only).mp3');
+    audioElementWin[0].play();
     clearTimeout(timer)
-    winner++;
+    winCounter++;
     resetGame();
   }
 
