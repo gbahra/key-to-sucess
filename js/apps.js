@@ -17,7 +17,7 @@ $(function(){
   var timer;
   var turn;
   var winCounter;
-  var t = 5000;
+  var t = 2000;
   var audioElementLose = $('<audio></audio>');
   audioElementLose.attr('src', 'Congratulations, you played yourself..mp3');;
   var audioElementWin = $('<audio></audio>');
