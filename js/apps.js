@@ -144,14 +144,12 @@ $(function(){
   }
 
   function fade(){
-    $("body").hide();
     $("#front").show();
+    $("body").hide();
     $("#front").fadeOut(1000);
-    setTimeout(function() {
-      $("body").fadeIn(1000);
-    }, 1000);
+    $("body").fadeIn(1000);
   }
-  fade();
+  //fade();
   resetGame();
   });
 
