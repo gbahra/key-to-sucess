@@ -151,9 +151,7 @@ $(function(){
     $("#front").fadeOut(5000);
     setTimeout(function(){},1000)
       $("body").fadeIn(1000);
-
-
-  }
+    }
   fade();
   resetGame();
   });
