@@ -20,7 +20,6 @@ $(function(){
   var t = 3000;
   var audioElementLose;
   var audioElementWin = $('<audio></audio>');
-
   var audioElement;
 
   function resetGame() {
@@ -146,6 +145,8 @@ $(function(){
 
   function fade(){
     $("body").hide();
+    $("#front").show();
+    $("#front").fadeOut(1000);
     setTimeout(function() {
       $("body").fadeIn(1000);
     }, 1000);
