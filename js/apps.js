@@ -146,10 +146,13 @@ $(function(){
   function fade(){
     $("#front").show();
     $("body").hide();
-    $("#front").fadeOut(1000);
-    $("body").fadeIn(1000);
+    $("#front").fadeOut(5000);
+    setTimeout(function(){},1000)
+      $("body").fadeIn(1000);
+
+
   }
-  //fade();
+  fade();
   resetGame();
   });
 
